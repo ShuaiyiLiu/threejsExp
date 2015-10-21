@@ -28,7 +28,12 @@ function init() {
         $( "bar" ).style.width = bar + "px";
     }
 
+    $( "progress" ).style.display = "block";
+
     loader.load('./obj/heart_n170111.stl', function(geometry) {
+
+        $( "progress" ).style.display = "none";
+
         var material = new THREE.MeshPhongMaterial({ 
             color: 0xff5533, specular: 0x111111, shininess: 200 } );
         mesh = new THREE.Mesh(geometry, material);
