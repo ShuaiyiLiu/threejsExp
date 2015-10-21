@@ -1,5 +1,5 @@
 var camera, scene, renderer;
-var cameraControls;
+var controls;
 var mesh;
 var mouseX = 0, mouseY = 0;
 
@@ -47,11 +47,17 @@ function init() {
 
         // light
         var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(-40, 60, -10);
+        spotLight.position.set(-40, 160, -10);
+
+        var spotLight2 = new THREE.SpotLight(0xffffff);
+        spotLight2.position.set(-40, -160, -10);
         scene.add(spotLight);
+        scene.add(spotLight2);
 
         document.body.appendChild(renderer.domElement);
         //document.addEventListener('mousemove', onDocumentMouseMove, false);
+        
+        controls = new THREE.OrbitControls(camera); 
         
         stats = new Stats();
         stats.domElement.style.position = 'absolute';
@@ -59,7 +65,7 @@ function init() {
 
         document.body.appendChild(stats.domElement);
 
-         render();
+        render();
     }, onProgress);
 }
 
@@ -84,9 +90,9 @@ function render() {
 
     stats.update();
 
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
-    mesh.rotation.z += 0.01;
+    mesh.rotation.x += 0.001;
+    mesh.rotation.y += 0.001;
+    mesh.rotation.z += 0.001;
     
     renderer.render(scene, camera);
 }
